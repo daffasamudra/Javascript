@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contoh AJAX dengan jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <h2>Klik tombol untuk memuat data</h2>
+    <button id="btnLoadData">Muat Data</button>
+    <div id="dataContainer"></div>
+
+    <script>
+        $("#btnLoadData").click(function() {
+            $.get("https://api.chucknorris.io/jokes/random", function(data, status) {
+                if (status === "success") {
+                    $("#dataContainer").text(data.value);
+                } else {
+                    console.error("Terjadi kesalahan: " + status);
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

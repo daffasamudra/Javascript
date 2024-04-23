@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contoh AJAX dengan JavaScript</title>
+</head>
+<body>
+
+    <h2>Klik tombol untuk memuat data</h2>
+    <button id="btnLoadData">Muat Data</button>
+    <div id="dataContainer"></div>
+
+    <script>
+        document.getElementById("btnLoadData").addEventListener("click", function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://api.chucknorris.io/jokes/random");
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var responseData = JSON.parse(xhr.responseText);
+                    document.getElementById("dataContainer").textContent = responseData.value;
+                } else {
+                    console.error("Terjadi kesalahan: " + xhr.status);
+                }
+            };
+            xhr.send();
+        });
+    </script>
+
+</body>
+</html>

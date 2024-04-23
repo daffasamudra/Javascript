@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Real-time Clock</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.clock {
+    font-size: 40px;
+    color: #333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.date {
+    font-size: 20px;
+    color: #666;
+}
+</style>
+</head>
+<body>
+<div class="clock" id="clock"></div>
+<div class="date" id="date"></div>
+
+<script>
+function updateClock() {
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+    var timeString = formatTime(hours) + ":" + formatTime(minutes) + ":" + formatTime(seconds);
+    document.getElementById("clock").textContent = timeString;
+
+    var dateString = formatDate(now);
+    document.getElementById("date").textContent = dateString;
+}
+
+function formatTime(time) {
+    return time < 10 ? "0" + time : time;
+}
+
+function formatDate(date) {
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var day = date.getDate();
+    var month = date.getMonth();
+    var year = date.getFullYear();
+    return months[month] + " " + day + ", " + year;
+}
+
+// Update the clock every second
+setInterval(updateClock, 1000);
+
+// Initial update to display the clock immediately
+updateClock();
+</script>
+</body>
+</html>
